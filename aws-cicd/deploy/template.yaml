@@ -338,7 +338,7 @@ Resources:
         - !Ref SecurityGroupSSH
       UserData: !Base64 >
         #!/bin/bash -xe
-        sudo yum update -y aws-cfn-bootstrap
+        exec > >(tee /var/log/user-data.log|logger -t user-data -s 2>/dev/console) 2>&1
         # CodeDeploy Agent Install
         sudo yum install -y ruby
         sudo wget https://aws-codedeploy-ap-south-1.s3.ap-south-1.amazonaws.com/latest/install
