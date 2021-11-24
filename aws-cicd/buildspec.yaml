@@ -1,0 +1,20 @@
+version: 0.2
+env:
+  parameter-store:
+    AWS_REGION: /cicd/aws/region
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 10
+
+  build:
+    commands:
+      - echo Build started on `date`
+      
+artifacts:
+  files:
+    - 'app/**/*'
+    - 'scripts/**'
+    - appspec.yml
+  name: cicd-demo-$(date +%Y-%m-%d-%H-%m-%S)
